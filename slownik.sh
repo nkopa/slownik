@@ -40,9 +40,9 @@ function menu {
 
 #czy istnieje
 function CzyIstnieje {
-	echo $1 - >spr.txt
-	cat slownik.txt | grep -i -f spr.txt > spr2.txt #sprawdza wzorzec z pliku
-	wc -m spr2.txt | cut -d ' ' -f 1 > wynik.txt #sprawdza ile znakow
+	
+	cat slownik.txt | grep -i -w ^$1 > spr.txt #sprawdza wzorzec z pliku
+	wc -m spr.txt | cut -d ' ' -f 1 > wynik.txt #sprawdza ile znakow
 	wynik=`cat "wynik.txt"`
 	
 	if [ $wynik != 0 ] #co gdy haslo juz istnieje
@@ -56,7 +56,7 @@ function CzyIstnieje {
 		echo Podaj liczbe:
 		read codalej
 							#co robic dalej - pisac czy nie 
-		while [ $codalej != 1 ] && [ $cidalej != 2 ] #TU COS NIE GRA!!!
+		while [ $codalej != 1 ] && [ $codalej != 2 ] #TU COS NIE GRA!!!
 		do
 			echo 
 			echo Nie rozumiem.
@@ -70,21 +70,21 @@ function CzyIstnieje {
 			read codalej
 		done
 
-		if [ $wynik = 1 ]
+		if [ $codalej = 1 ]
 		then 
 			DodacWpis $1
 		fi
 
-		if [ $wynik = 2 ]
+		if [ $codalej = 2 ]
 		then
 			menu
 		fi
 
 	fi
 
-	rm spr.txt #usuwanie smieci
-	rm spr2.txt
-	rm wynik.txt
+	#rm spr.txt #usuwanie smieci
+	#rm spr2.txt
+	#rm wynik.txt
 
 	DodacWpis $1
 }
@@ -96,14 +96,14 @@ function ZnalezcHaslo {
 	read haslo
 	echo
 
-	echo $haslo - >spr.txt
-	cat slownik.txt | grep -i -f spr.txt
+	
+	cat slownik.txt | grep -i -w ^$haslo
 
 	echo
 	echo Wcisnij Enter
 	read
 
-	rm spr.txt #usuwanie smieci
+	#rm spr.txt #usuwanie smieci
 
 	menu
 }
