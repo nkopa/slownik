@@ -32,6 +32,7 @@ function menu {
 
 	if [ $corobic = 2 ]
 	then
+		echo
 		echo Jakie haslo chcesz dodac?
 		read haslo
 		CzyIstnieje $haslo
@@ -41,7 +42,7 @@ function menu {
 #czy istnieje
 function CzyIstnieje {
 	
-	cat slownik.txt | grep -i -w ^$1 > spr.txt #sprawdza wzorzec z pliku
+	cat slownik.txt | grep -i -w ^$1 > spr.txt #dopasowanie wzorca do pełnych słów
 	wc -m spr.txt | cut -d ' ' -f 1 > wynik.txt #sprawdza ile znakow
 	wynik=`cat "wynik.txt"`
 	
@@ -56,7 +57,7 @@ function CzyIstnieje {
 		echo Podaj liczbe:
 		read codalej
 							#co robic dalej - pisac czy nie 
-		while [ $codalej != 1 ] && [ $codalej != 2 ] #TU COS NIE GRA!!!
+		while [ $codalej != 1 ] && [ $codalej != 2 ] 
 		do
 			echo 
 			echo Nie rozumiem.
@@ -69,24 +70,21 @@ function CzyIstnieje {
 			echo Podaj liczbe:
 			read codalej
 		done
-
-		if [ $codalej = 1 ]
-		then 
-			DodacWpis $1
-		fi
-
-		if [ $codalej = 2 ]
-		then
-			menu
-		fi
-
 	fi
 
-	#rm spr.txt #usuwanie smieci
-	#rm spr2.txt
-	#rm wynik.txt
+	rm spr.txt #usuwanie smieci
+	rm wynik.txt
 
-	DodacWpis $1
+	if [ $codalej = 1 ]
+	then 
+		DodacWpis $1
+	fi
+
+	if [ $codalej = 2 ]
+	then
+		menu
+	fi
+	
 }
 
 #znalezc haslo
@@ -102,8 +100,6 @@ function ZnalezcHaslo {
 	echo
 	echo Wcisnij Enter
 	read
-
-	#rm spr.txt #usuwanie smieci
 
 	menu
 }
