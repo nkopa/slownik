@@ -1,4 +1,6 @@
 slownik
 =======
 
-Nie do konca gotowe - problemy z jedna z funkcji
+pl
+
+Przykladowy skrypt w bashu, ktory tworzy i "zarzadza" w pewnym sensie naszym wlasnym slownikiem - wszystko polega na obrobce jednego pliku, w ktorym zapisujemy hasla.
