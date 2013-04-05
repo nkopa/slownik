@@ -6,12 +6,13 @@ function menu {
 	echo Co chcesz zrobic?
 	echo 1 Znalezc haslo
 	echo 2 Dodac wpis
+	#echo 3 Usunac wpis
 	echo 3 Wyjsc
 	echo
 	echo Podaj liczbe:
 	read corobic
 
-	while [ $corobic != 1 ] && [ $corobic != 2 ] && [ $corobic != 3 ]
+	while [ $corobic != 1 ] && [ $corobic != 2 ] && [ $corobic != 3 ] #&& [ $corobic != 4 ]
 	do
 		echo
 		echo Nie rozumiem.
@@ -19,6 +20,7 @@ function menu {
 		echo Co chcesz zrobic? 
 		echo 1 Znalezc haslo
 		echo 2 Dodac wpis
+		#echo 3 Usunac wpis
 		echo 3 Wyjsc
 		echo
 		echo Podaj liczbe:
@@ -27,7 +29,7 @@ function menu {
 
 	if [ $corobic = 1 ]
 	then
-		ZnalezcHaslo
+		ZnalezcHaslo #$corobic
 	fi
 
 	if [ $corobic = 2 ]
@@ -37,6 +39,14 @@ function menu {
 		read haslo
 		CzyIstnieje $haslo
 	fi
+
+	#if [ $corobic = 3 ]
+	#then
+		#echo
+		#echo Jakie haslo chcesz usunac?
+		#read $haslo
+		#ZnalezcHaslo $corobic
+	#fi
 }
 
 #czy istnieje
@@ -101,7 +111,15 @@ function ZnalezcHaslo {
 	echo Wcisnij Enter
 	read
 
+	#if [ $1 = 1 ]
+	#then
 	menu
+	#fi
+
+	#if [ $1 = 3 ]
+	#then
+	#UsunWpis $haslo
+	#fi
 }
 
 #dadac wpis
@@ -117,6 +135,14 @@ function DodacWpis {
 	mv slownik1.txt slownik.txt
 
 	menu
+}
+
+#usunac wpis
+function UsunWpis{
+
+	echo
+	echo 
+
 }
 
 menu
